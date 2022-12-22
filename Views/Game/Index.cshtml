@@ -1,0 +1,15 @@
+﻿@model List<Ihor_Projekt_Game.Models.Game>
+
+<p class="text-center">
+    <a asp-controller="Game" asp-action="Add" class="btn btn-primary btn-lg">Dodaj</a>
+</p>
+<table class="table">
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.NGame</td>
+            <td>@e.NCompany</td>
+            <td>@e.PriseG</td>
+        </tr>
+    }
+</table>

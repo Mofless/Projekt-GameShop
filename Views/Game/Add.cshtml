@@ -1,0 +1,18 @@
+﻿@model Ihor_Projekt_Game.Models.Game
+
+<h1>Dodawanie nowych gier</h1>
+
+<form asp-controller="Buty" asp-action="Add" method="post">
+    <div asp-validation-summary="All" class="text-danger"> </div>
+
+    <label asp-for="NGame">Name game: </label>
+    <input asp-for="NGame" type="text" class="form-control" />
+
+    <label asp-for="NCompany">Name Company: </label>
+    <input asp-for="NCompany" type="text" class="form-control" />
+
+    <label asp-for="PriseG">Prise game: </label>
+    <input asp-for="PriseG" type="number" class="form-control" />
+
+    <button type="submit" class="btn btn-success"> Dodaj </button>
+</form>
