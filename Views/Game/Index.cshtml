@@ -3,13 +3,38 @@
 <p class="text-center">
     <a asp-controller="Game" asp-action="Add" class="btn btn-primary btn-lg">Dodaj</a>
 </p>
+
+
+<!-- -->
 <table class="table">
-    @foreach (var e in Model)
+    <tr>
+        <th>Name company</th>
+        <th>Name game</th>
+        <th>Price</th>
+        <th>Genre of game</th>
+        <th>Action</th>
+    </tr>
+    <!-- -->
+
+    @foreach (var element in Model)
     {
         <tr>
-            <td>@e.NGame</td>
-            <td>@e.NCompany</td>
-            <td>@e.PriseG</td>
+            <td>@element.NCompany</td>
+            <td>@element.NGame</td>
+            <td>@element.PriseG</td>
+            @if (@element.Genre is null)
+            {
+                <td> - </td>
+            }
+            else
+            {
+                <td>@element.Genre.NGenre</td>
+            }
+
+            <td>
+                <a asp-controller="Game" asp-action="Delete" asp-route-id=@element.GameId class="btn btn-danger">Delet</a>
+                <a asp-controller="Game" asp-action="ChangeGenere" asp-route-id=@element.GameId class="btn btn-primary">Edit genre</a>
+            </td>
         </tr>
     }
 </table>

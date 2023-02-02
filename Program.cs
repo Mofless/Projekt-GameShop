@@ -1,3 +1,10 @@
+
+using Microsoft.EntityFrameworkCore;
+using Ihor_Projekt_Game.Models;
+using Ihor_Projekt_Game.Services;
+using Ihor_Projekt_Game.Data;
+using Microsoft.AspNetCore.Identity;
+
 namespace Ihor_Projekt_Game
 {
     public class Program
@@ -8,6 +15,18 @@ namespace Ihor_Projekt_Game
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDbContext>(
+            options => options.UseSqlServer(builder.Configuration["Data:Connection"]));
+
+            builder.Services.AddDbContext<UserContext>(
+            options => options.UseSqlServer(builder.Configuration["Data:Connection"]));//
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<UserContext>();//
+
+            builder.Services.AddScoped<IGameService, GameServiceEF>();
 
             var app = builder.Build();
 
@@ -23,8 +42,11 @@ namespace Ihor_Projekt_Game
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();//
 
             app.UseAuthorization();
+
+            app.MapRazorPages();//
 
             app.MapControllerRoute(
                 name: "default",

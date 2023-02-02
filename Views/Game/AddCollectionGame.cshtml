@@ -1,0 +1,35 @@
+﻿@model Ihor_Projekt_Game.Models.CollectionGame
+
+<h1>Dodawanie nowych kolekcji gier</h1>
+
+<form asp-controller="Game" asp-action="AddCollectionGame" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+
+
+    <label asp-for="NGameCollection">Name game collection: </label>
+        <div>
+        <span asp-validation-for="NGameCollection" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+        </div>
+    <input asp-for="NGameCollection" type="text" class="form-control" />
+
+
+
+
+    <label asp-for="NCompanyCollection">Name Company game collection: </label>
+    <div>
+        <span asp-validation-for="NCompanyCollection" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
+    <input asp-for="NCompanyCollection" type="text" class="form-control" />
+
+
+
+    <label asp-for="PriseGCollection">Prise game collection: </label>
+    <div>
+        <span asp-validation-for="PriseGCollection" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
+    <input asp-for="PriseGCollection" type="number" class="form-control" />
+
+    <button type="submit" class="btn btn-success"> Dodaj </button>
+</form>

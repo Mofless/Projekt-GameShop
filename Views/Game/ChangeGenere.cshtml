@@ -1,0 +1,18 @@
+﻿@model Ihor_Projekt_Game.Models.Genre
+
+
+<h1>Write change genre</h1>
+
+<form asp-controller="Game" asp-action="ChangeGenere" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+    <label asp-for="NGenre">Genre: </label>
+    <div>
+        <span asp-validation-for="NGenre" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
+    <input asp-for="NGenre" type="text" class="form-control" />
+
+    <input asp-for="GameId" type="number" value="@ViewBag.gameId" class="form-control" hidden />
+
+    <button type="submit" class="btn btn-success">Accept</button>
+</form>

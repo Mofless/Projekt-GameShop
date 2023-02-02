@@ -1,0 +1,31 @@
+﻿@model List<CollectionGame>
+
+<p class="text-center">
+    <a asp-controller="Game" asp-action="AddCollectionGame" class="btn btn-primary btn-lg">Dodaj</a>
+</p>
+
+
+<!-- -->
+<table class="table">
+    <tr>
+        <th>Name game collection</th>
+        <th>Name Company game collection</th>
+        <th>Prise game collection</th>
+        <!--  <th>Action</th> -->
+    </tr>
+    <!-- -->
+    @foreach (var element in Model)
+    {
+        <tr>
+            <td>@element.NGameCollection</td>
+            <td>@element.NCompanyCollection</td>
+            <td>@element.PriseGCollection</td>
+
+
+            <td>
+               <!--  <a asp-controller="Game" asp-action="Delete" asp-route-id= element.GameId class="btn btn-danger">Delet</a> -->
+
+            </td>
+        </tr>
+    }
+</table>

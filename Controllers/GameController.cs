@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using Ihor_Projekt_Game.Models;
 using Ihor_Projekt_Game.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ihor_Projekt_Game.Controllers
 {
@@ -19,9 +22,10 @@ namespace Ihor_Projekt_Game.Controllers
             return View(_gameService.FindAll());
         }
 
-        //Dodawanie 
+
 
         [HttpGet]
+        //[Authorize(Roles = "admin")]
         public IActionResult Add()
         {
             return View();
@@ -40,5 +44,104 @@ namespace Ihor_Projekt_Game.Controllers
                 return View();
             }
         }
+
+
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public IActionResult ChangeGenere([FromRoute] int id)
+        {
+            ViewBag.gameId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ChangeGenere([FromForm] Genre genre)
+        {
+            if (ModelState.IsValid)
+            {
+                _gameService.ChangeGameGenere(genre, genre.GameId);
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+
+
+
+
+            }
+                         
+        }
+
+
+
+
+
+
+
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            _gameService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+        ////////////////////////////////////////////////////////////////////////////////
+        ///
+
+
+
+
+
+
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public IActionResult AddCollectionGame()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult AddCollectionGame([FromForm] CollectionGame collectionGame)
+        {
+            if (ModelState.IsValid)
+            {
+                _gameService.SaveC(collectionGame);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(collectionGame);
+            }
+        }
+
+
+        public IActionResult ListaCollectionGame()
+        {
+            return View(_gameService.FindAllC());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

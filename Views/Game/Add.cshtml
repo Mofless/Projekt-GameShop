@@ -2,17 +2,39 @@
 
 <h1>Dodawanie nowych gier</h1>
 
-<form asp-controller="Buty" asp-action="Add" method="post">
-    <div asp-validation-summary="All" class="text-danger"> </div>
+
+
+
+<form asp-controller="Game" asp-action="Add" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+
 
     <label asp-for="NGame">Name game: </label>
+    <div>
+        <span asp-validation-for="NGame" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
     <input asp-for="NGame" type="text" class="form-control" />
 
+
+
     <label asp-for="NCompany">Name Company: </label>
+    <div>
+        <span asp-validation-for="NCompany" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
     <input asp-for="NCompany" type="text" class="form-control" />
 
+
+
     <label asp-for="PriseG">Prise game: </label>
+    <div>
+        <span asp-validation-for="PriseG" style="font-size:16px; font-family:'Times New Roman" class="text-danger"></span>
+    </div>
     <input asp-for="PriseG" type="number" class="form-control" />
+
+
+
 
     <button type="submit" class="btn btn-success"> Dodaj </button>
 </form>
